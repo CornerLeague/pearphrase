@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="/"><img src="/logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px"></a>
+    </div>
+    <ul class="nav-center">
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="nav-right">
+        <% if (user) { %>
+            <div class="user-menu">
+                <span class="username"><%= user.username %></span>
+                <div class="dropdown-menu">
+                    <a href="/profile">Archive</a>
+                    <a href="/settings">Settings</a>
+                </div>
+            </div>
+        <% } else { %>
+            <a href="/login" class="signup-button">Sign up/Login</a>
+        <% } %>
+    </div>
+</nav>
+
+<div class="main-content">
+    <h1>Your Archives</h1>
+
+    <div class="url-container">
+      <% if (urls.length > 0) { %>
+        <% urls.forEach(urlEntry => { %>
+          <div class="glass-card">
+            <h3>URL:</h3>
+            <p><%= urlEntry.url %></p>
+            <h3>Cleaned Text:</h3>
+            <p class="cleaned-text"><%= urlEntry.cleanedText %></p>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No URLs have been saved yet.</p>
+      <% } %>
+    </div>
+</div>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Disclaimer</a>
+        <div>
+            <img src="../logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px">
+        </div>
+    </footer>
+
+</body>
+</html>

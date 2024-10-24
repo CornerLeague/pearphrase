@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - PearPhase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+   
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="/"><img src="/logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px"></a>
+    </div>
+    <ul class="nav-center">
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="nav-right">
+        <% if (user) { %>
+            <div class="user-menu">
+                <span class="username"><%= user.username %></span>
+                <div class="dropdown-menu">
+                    <a href="/profile">Archive</a>
+                    <a href="/settings">Settings</a>
+                </div>
+            </div>
+        <% } else { %>
+            <a href="/login" class="signup-button">Sign up/Login</a>
+        <% } %>
+    </div>
+</nav>
+
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <h1 class="main-title">Sign Up</h1>
+          <!-- Redirect to Login Page -->
+          <p class="already-account">
+            <a href="/login">If you already have an account, Click Here</a>
+        </p>
+  
+
+        <div class="glass-box1">
+            <div class="scrollable-content">
+        <!-- Sign Up Form -->
+        <form name="signupForm" action="/signup" method="POST" onsubmit="return validateForm()" class="signup-form">
+            <input type="text" name="firstName" placeholder="First Name" required>
+            <input type="text" name="lastName" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+            <label>
+                <input type="checkbox" name="terms" required> Accept Terms and Conditions
+            </label>
+
+            <!-- Sign Up Button -->
+            <button type="submit" class="login-button">Sign Up</button>
+
+            <!-- Sign Up with Gmail Button -->
+            <button type="button" class="gmail-button">
+                <img src="/logo/google_icon.png" alt="Google Icon" style="height: 20px; margin-right: 10px;"> 
+                Sign Up with Gmail
+            </button>
+        </form>
+    </div>
+</div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Disclaimer</a>
+        <div>
+            <img src="../logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px">
+        </div>
+    </footer>
+
+    <script defer>
+        function validateForm() {
+            const firstName = document.forms["signupForm"]["firstName"].value;
+            const lastName = document.forms["signupForm"]["lastName"].value;
+            const email = document.forms["signupForm"]["email"].value;
+            const username = document.forms["signupForm"]["username"].value;
+            const password = document.forms["signupForm"]["password"].value;
+            const confirmPassword = document.forms["signupForm"]["confirmPassword"].value;
+            const terms = document.forms["signupForm"]["terms"].checked;
+
+            // Validate that no fields are empty
+            if (!firstName || !lastName || !email || !username || !password || !confirmPassword) {
+                alert("All fields must be filled out.");
+                return false;
+            }
+
+            // Validate password length and numeric character
+            if (password.length < 8 || !/\d/.test(password)) {
+                alert("Password must be at least 8 characters long and contain at least one numeric digit.");
+                return false;
+            }
+
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            // Validate terms and conditions checkbox
+            if (!terms) {
+                alert("You must accept the Terms and Conditions.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>

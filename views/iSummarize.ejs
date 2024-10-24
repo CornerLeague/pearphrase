@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PearPhase - iSummarize Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="/"><img src="/logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px"></a>
+    </div>
+    <ul class="nav-center">
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="nav-right">
+        <% if (user) { %>
+            <div class="user-menu">
+                <span class="username"><%= user.username %></span>
+                <div class="dropdown-menu">
+                    <a href="/profile">Archive</a>
+                    <a href="/settings">Settings</a>
+                </div>
+            </div>
+        <% } else { %>
+            <a href="/login" class="signup-button">Sign up/Login</a>
+        <% } %>
+    </div>
+</nav>
+
+    <!-- Main Content Section with Glass Box -->
+    <div class="main-content" style="margin-top: 5px;">
+        <h1 class="main-title">iSummarize</h1> <!-- iSummarize Title -->
+
+        <!-- Button Container for Simpler, Play/Pause, and In-Depth Buttons -->
+        <div class="button-container1">
+            <button class="isum-circle-button2" id="simpler-button">Simpler</button>
+            <button class="isum-circle-button" id="play-pause-button">
+                <span id="icon" class="play-icon">▶</span> <!-- Play Icon -->
+            </button>
+            <button class="isum-circle-button2" id="in-depth-button">In-Depth</button>
+        </div>
+
+        <div class="glass-box">
+            <div class="scrollable-content">
+                <p id="summary-text"><%= summaryText %></p> <!-- Display summarized text here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Disclaimer</a>
+        <div>
+            <img src="../logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px">
+        </div>
+    </footer>
+
+    <!-- JavaScript for Simpler, In-Depth, Play/Pause and TTS -->
+    <script>
+        const simplerButton = document.getElementById('simpler-button');
+        const inDepthButton = document.getElementById('in-depth-button');
+        const summaryText = document.getElementById('summary-text');
+
+        // Handle click on Simpler button
+        simplerButton.addEventListener('click', async function() {
+            try {
+                const response = await fetch('/simpler-summary', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: '<%= url %>' }), // Send URL to backend
+                });
+
+                if (!response.ok) {
+                    console.error('Error generating simpler summary');
+                    return;
+                }
+
+                const data = await response.json();
+                summaryText.textContent = data.simplerSummary; // Update the glass-box with the simpler summary
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Handle click on In-Depth button
+        inDepthButton.addEventListener('click', async function() {
+            try {
+                const response = await fetch('/in-depth-summary', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: '<%= url %>' }), // Send URL to backend
+                });
+
+                if (!response.ok) {
+                    console.error('Error generating in-depth summary');
+                    return;
+                }
+
+                const data = await response.json();
+                summaryText.textContent = data.inDepthSummary; // Update the glass-box with the in-depth summary
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Play/Pause functionality for the summary text (TTS)
+        let isPlaying = false;
+        let audioElement = new Audio(); // Initialize the audio element
+        const playPauseButton = document.getElementById('play-pause-button');
+        const icon = document.getElementById('icon');
+    
+        // Function to fetch TTS audio for the summary text
+        async function fetchTTSSummaryAudio() {
+            const response = await fetch('/tts-summary', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url: '<%= url %>' }), // Send the URL to the backend
+            });
+    
+            if (!response.ok) {
+                console.error('Error fetching TTS summary audio');
+                return;
+            }
+    
+            // Fetch the audio blob
+            const audioBlob = await response.blob();
+            const audioUrl = URL.createObjectURL(audioBlob); // Create a URL for the audio blob
+            audioElement.src = audioUrl; // Set the audio source to the blob URL
+        }
+    
+        // Event listener for Play/Pause button
+        playPauseButton.addEventListener('click', async function() {
+            if (!audioElement.src) {
+                // If the audio is not yet fetched, get the TTS summary audio first
+                await fetchTTSSummaryAudio();
+            }
+    
+            if (isPlaying) {
+                audioElement.pause();
+                icon.textContent = '▶'; // Change back to play icon
+                isPlaying = false;
+            } else {
+                audioElement.play();
+                icon.textContent = '❚❚'; // Change to pause icon
+                isPlaying = true;
+            }
+    
+            // Handle pause event to update icon
+            audioElement.addEventListener('pause', function() {
+                icon.textContent = '▶'; // Switch to play icon when audio is paused
+                isPlaying = false;
+            });
+    
+            // Handle play event to update icon
+            audioElement.addEventListener('play', function() {
+                icon.textContent = '❚❚'; // Switch to pause icon when audio is playing
+                isPlaying = true;
+            });
+        });
+    </script>
+</body>
+</html>

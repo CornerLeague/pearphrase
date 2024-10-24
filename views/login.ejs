@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PearPhase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="/"><img src="/logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px"></a>
+    </div>
+    <ul class="nav-center">
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="nav-right">
+        <% if (user) { %>
+            <div class="user-menu">
+                <span class="username"><%= user.username %></span>
+                <div class="dropdown-menu">
+                    <a href="/profile">Archive</a>
+                    <a href="/settings">Settings</a>
+                </div>
+            </div>
+        <% } else { %>
+            <a href="/login" class="signup-button">Sign up/Login</a>
+        <% } %>
+    </div>
+</nav>
+
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <h1 class="main-title">Login</h1>
+
+        <p class="already-account">
+            <a href="/signup">If you don't have an account, Click Here</a>
+        </p>
+
+        <!-- Login Form -->
+        <form action="/login" method="POST" class="login-form">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <!-- Login Button -->
+            <button type="submit" class="login-button">Login</button>
+
+            <!-- Login with Gmail Button -->
+            <button type="button" class="gmail-button">
+                <img src="/logo/google_icon.png" alt="Google Icon" style="height: 20px; margin-right: 10px;"> 
+                Login with Gmail
+            </button>
+
+            <!-- Forgot Password and Username Links -->
+            <div class="forgot-links">
+                <a href="#">Forgot Password</a> | 
+                <a href="#">Forgot Username</a>
+            </div>
+        </form>
+    </div>
+
+     <!-- Error pop-up -->
+     <% if (message) { %>
+        <div class="error-popup">
+            <p><%= message %></p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    <% } %>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Disclaimer</a>
+        <div>
+            <img src="../logo/PearPhase_Logo.png" alt="PearPhase Logo" style="height: 100px">
+        </div>
+    </footer>
+
+
+    <script>
+        function closePopup() {
+            document.querySelector('.error-popup').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,612 @@
+/* Reset basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #b0ffb6;
+}
+
+a {
+    color: dimgrey;
+
+}
+
+h1, h2, h3, p{
+    background: linear-gradient(90deg, #b0ffb6, #3ad59f); /* Gradient green */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.4s ease; /* Smooth transition including size */
+    background-size: 100% auto; /* Initial size */
+    transform: scale(1); /* Initial size */
+}
+
+h1:hover, h2:hover, h3:hover, p:hover, a:hover, li:hover {
+    background: linear-gradient(90deg, #00bfff, #8a2be2, #32cd32); /* Blue, Purple, Green gradient */
+    background-position: right center; /* Moves the gradient on hover */
+    background-size: 200% auto; /* Moves back to create animation */
+    transform: scale(1.05); /* Slight size increase */
+    transition: all 0.4s ease-in-out; /* Smooth transition for both background and size */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-left .logo {
+    height: 40px;
+}
+
+.nav-center {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+}
+
+.nav-center li {
+    margin: 0 10px;
+}
+
+.nav-center li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5px 10px;
+}
+
+.nav-center li a:hover {
+    color: #fff;
+}
+
+/* Apply Hover Effect to Signup/Login Button */
+.signup-button {
+    background-color: transparent;
+    border: 2px solid;
+    border-image: white 1; /* Gradient green border */
+    color: #fff; /* White text */
+    padding: 10px 20px;
+    border-radius: 4px; /* More rounded edges */
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.4s ease; /* Smooth transition */
+    transform: scale(1); /* Initial size */
+}
+
+.signup-button:hover {
+    color: #fff; /* Keep white text on hover */
+    border: 2px solid; /* Remove border on hover */
+    border-image: linear-gradient(90deg, #00bfff, #8a2be2, #32cd32) 1;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transform: scale(1.05); /* Slight size increase on hover */
+    transition: all 0.4s ease-in-out; /* Smooth transition for both background and size */
+}
+
+/* Main Content Section */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 3.7rem;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.glow-text {
+    color: #fff;
+    text-shadow: 0 0 10px #b0ffb6, 0 0 20px #3ad59f, 0 0 30px #3ad59f;
+    font-weight: 700;
+}
+
+/* Form Styling */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.url-input {
+    width: 500px;
+    padding: 10px;
+    border-image: linear-gradient(90deg, #8a2be2, #32cd32) 1;
+    border-radius: 4px;
+    background-color: #111;
+    color: #b0ffb6;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.try-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #33e0af, #78d278);
+    color: #000;
+    cursor: pointer;
+}
+
+.try-button:hover {
+    background: linear-gradient(90deg, thistle, #8a2be2); /* Blue, Purple, Green gradient */
+    background-position: right center; /* Moves the gradient on hover */
+    background-size: 200% auto; /* Moves back to create animation */
+    transform: scale(1.05); /* Slight size increase */
+    transition: all 0.4s ease-in-out; /* Smooth transition for both background and size */
+    -webkit-text-fill-color: black;
+}
+
+/* Input and Button Styling */
+.main-content input[type="text"]:focus {
+    border-color: #3ad59f; /* Change to green when clicked */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add spacing between buttons */
+    margin-top: 20px;
+}
+
+.main-action {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #33e0af, #78d278);
+    color: #000;
+    cursor: pointer;
+}
+
+.main-action:hover {
+    background: linear-gradient(90deg, thistle, #8a2be2); /* Blue, Purple, Green gradient */
+    background-position: right center; /* Moves the gradient on hover */
+    background-size: 200% auto; /* Moves back to create animation */
+    transform: scale(1.05); /* Slight size increase */
+    transition: all 0.4s ease-in-out; /* Smooth transition for both background and size */
+    -webkit-text-fill-color: black;
+}
+
+/* Glass-style box */
+.glass-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 60vw;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    overflow: hidden; /* Hide default scrollbar */
+}
+
+/* Glass-style box */
+.glass-box1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 60vw;
+    margin: auto;
+    background: black;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    overflow: hidden; /* Hide default scrollbar */
+}
+
+/* Scrollable content inside the glass box */
+.scrollable-content {
+    max-height: 50vh;
+    width: 90%;
+    overflow-y: auto; /* Enable vertical scroll when content exceeds the height */
+    padding: 20px;
+}
+
+/* Custom scrollbar styling */
+.scrollable-content::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: transparent; /* Track background */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #6c6c6c; /* Grey scrollbar thumb color */
+    border-radius: 10px; /* Rounded scrollbar */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker color when hovering */
+}
+
+
+/* Button Layout: Flexbox for Horizontal Alignment */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between the buttons */
+    margin: 30px 0;
+}
+
+.button-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between the buttons */
+    margin: 10px 0;
+}
+
+/* Circle Button */
+.iread-circle-button {
+    background-color: #3ad59f;
+    border: none;
+    color: #000;
+    width: 45px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.iread-circle-button:hover {
+    background: linear-gradient(90deg, thistle, #8a2be2); /* Hover effect */
+    transform: scale(1.1); /* Slight size increase */
+}
+
+.isum-circle-button {
+    background-color: #3ad59f;
+    border: none;
+    color: #000;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.isum-circle-button:hover {
+    background: linear-gradient(90deg, thistle, #8a2be2); /* Hover effect */
+    transform: scale(1.1); /* Slight size increase */
+}
+
+
+.isum-circle-button2 {
+    background-color: #3ad59f;
+    border: none;
+    color: #000;
+    width: 70px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.isum-circle-button2:hover {
+    background: linear-gradient(90deg, thistle, #8a2be2); /* Hover effect */
+    transform: scale(1.1); /* Slight size increase */
+}
+
+.irec-circle-button {
+    background-color: #3ad59f;
+    border: none;
+    color: #000;
+    width: 10%;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.irec-circle-button:hover {
+    background: linear-gradient(90deg, thistle, #8a2be2); /* Hover effect */
+    transform: scale(1.1); /* Slight size increase */
+}
+
+/* Icon Styles */
+.play-icon, .pause-icon {
+    font-weight: bold;
+}
+
+/* Styling for the Login Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Spacing between input fields and buttons */
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 400px;
+    padding: 10px;
+    border: 2px solid;
+    border-image: linear-gradient(90deg, #8a2be2, #3ad59f) 1;
+    border-radius: 4px;
+    background-color: #111;
+    color: #b0ffb6;
+}
+
+.login-form input:focus {
+    border-color: #3ad59f;
+}
+
+/* Login Button Styling */
+.login-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3ad59f;
+    color: #000;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #b0ffb6;
+}
+
+/* Gmail Button Styling */
+.gmail-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.gmail-button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Forgot Password and Username Links Styling */
+.forgot-links {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 10px;
+}
+
+.forgot-links a {
+    color: #b0ffb6;
+    text-decoration: none;
+}
+
+.forgot-links a:hover {
+    text-decoration: underline;
+}
+
+/* Media Query to Handle Responsiveness */
+@media (max-width: 768px) {
+    .login-form input[type="text"], 
+    .login-form input[type="password"] {
+        width: 90%; /* Adjusts input field width for smaller screens */
+    }
+}
+
+
+/* Styling for the Sign Up Form */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Spacing between input fields and buttons */
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="password"],
+.signup-form input[type="email"] {
+    width: 400px;
+    padding: 10px;
+    border: 2px solid;
+    border-image: linear-gradient(90deg, #8a2be2, #3ad59f) 1;
+    border-radius: 4px;
+    background-color: #111;
+    color: #b0ffb6;
+}
+
+.signup-form input:focus {
+    border-color: #3ad59f;
+}
+
+/* Checkbox Styling */
+.signup-form label {
+    color: #b0ffb6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.signup-form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+/* Login Button Styling (used for Sign Up Button) */
+.login-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3ad59f;
+    color: #000;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #b0ffb6;
+}
+
+/* Gmail Button Styling */
+.gmail-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.gmail-button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Media Query to Handle Responsiveness */
+@media (max-width: 768px) {
+    .signup-form input[type="text"], 
+    .signup-form input[type="password"], 
+    .signup-form input[type="email"] {
+        width: 90%; /* Adjusts input field width for smaller screens */
+    }
+}
+
+
+/* Error Pop-up Styling */
+.error-popup {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 9999;
+    text-align: center;
+}
+
+.error-popup p {
+    margin-bottom: 10px;
+}
+
+.error-popup button {
+    background-color: #3ad59f;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error-popup button:hover {
+    background-color: #32cd32;
+}
+
+
+/* Glass-style card for URL and cleaned text display */
+.glass-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.glass-card h3 {
+    color: #b0ffb6;
+    margin-bottom: 10px;
+}
+
+.cleaned-text {
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #3ad59f #000;
+}
+
+/* Style for the scrollbar */
+.cleaned-text::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cleaned-text::-webkit-scrollbar-thumb {
+    background-color: #3ad59f;
+    border-radius: 10px;
+}
+
+
+
+/* Footer Styling */
+footer {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    color: #3ad59f;
+}
+
+footer a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
